@@ -22,8 +22,8 @@ module.exports = function(items, options) {
 	var h = newItems.reduce(function(curr, item) { return Math.max(curr, item.y + item.height); }, 0);
 
 	var ret = {
-		width: w,
-		height: h
+		w: w,
+		h: h
 	};
 
 	if (!inPlace) {
