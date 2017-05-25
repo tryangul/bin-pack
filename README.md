@@ -1,4 +1,6 @@
-# Bin Pack
+# Bin Pack Plus
+
+A fork of Bin Pack by github/bryanburgers that allows setting max width.
 
 [![Build Status](https://travis-ci.org/bryanburgers/bin-pack.png?branch=master)](https://travis-ci.org/bryanburgers/bin-pack)
 

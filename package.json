@@ -1,7 +1,7 @@
 {
-  "name": "bin-pack",
-  "version": "1.0.2",
-  "description": "A packing algorithm for 2D bin packing. Largely based on code and a blog post by Jake Gordon.",
+  "name": "bin-pack-plus",
+  "version": "0.0.1",
+  "description": "A packing algorithm for 2D bin packing. Largely based on code and a blog post by Jake Gordon and Bryan Burgers",
   "author": {
     "name": "Bryan Burgers",
     "email": "bryan@burgers.io",
@@ -16,13 +16,13 @@
     "pack"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/bryanburgers/bin-pack",
+  "homepage": "https://github.com/tryangul/bin-pack",
   "bugs": {
-    "url": "https://github.com/bryanburgers/bin-pack/issues"
+    "url": "https://github.com/tryangul/bin-pack/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:bryanburgers/bin-pack.git"
+    "url": "git@github.com:tryangul/bin-pack.git"
   },
   "dependencies": {},
   "devDependencies": {
