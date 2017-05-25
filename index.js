@@ -4,8 +4,10 @@ var GrowingPacker = require('./packer.growing.js');
 
 module.exports = function(items, options) {
 	options = options || {};
-	var inPlace = options.inPlace || false;
 	var packer = new GrowingPacker({ maxWidth: options.maxWidth });
+
+	var inPlace = options.inPlace || false;
+	var shortNames = options.shortNames || false;
 
 	// Clone the items.
 	var newItems = items.map(function(item) { return inPlace ? item : { width: item.width, height: item.height, item: item }; });
@@ -21,10 +23,9 @@ module.exports = function(items, options) {
 	var w = newItems.reduce(function(curr, item) { return Math.max(curr, item.x + item.width); }, 0);
 	var h = newItems.reduce(function(curr, item) { return Math.max(curr, item.y + item.height); }, 0);
 
-	var ret = {
-		w: w,
-		h: h
-	};
+	var ret = shortNames
+		? { w: w, h: h }
+		: { width: w, height: h };
 
 	if (!inPlace) {
 		ret.items = newItems;
