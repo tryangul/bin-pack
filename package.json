@@ -1,6 +1,6 @@
 {
   "name": "bin-pack-plus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A packing algorithm for 2D bin packing. Largely based on code and a blog post by Jake Gordon and Bryan Burgers",
   "author": {
     "name": "Bryan Burgers",
