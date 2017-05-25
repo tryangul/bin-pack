@@ -67,7 +67,7 @@ GrowingPacker.prototype = {
 		var n, node, block, len = blocks.length, fit;
 		var width  = len > 0 ? blocks[0].width : 0;
 		var height = len > 0 ? blocks[0].height : 0;
-		this.root = { x: 0, y: 0, width: width, height: height };
+		this.root = { x: 0, y: 0, width: this.maxWidth || width, height: height };
 		for (n = 0; n < len ; n++) {
 			block = blocks[n];
 			if (node = this.findNode(this.root, block.width, block.height)) {
@@ -100,20 +100,11 @@ GrowingPacker.prototype = {
 	},
 
 	growNode: function(width, height) {
+		var lessThanMax  = !this.maxWidth || this.root.width < this.maxWidth;
+		var canGrowRight = (height <= this.root.height) && lessThanMax;
 		var canGrowDown  = (width  <= this.root.width);
-		var canGrowRight = (height <= this.root.height);
 
-		var shouldGrowRight = canGrowRight && this.maxWidth
-			? this.root.width < this.maxWidth
-			: (this.root.height >= (this.root.width + width )); // attempt to keep square-ish by growing right when height is much greater than width
-
-		var shouldGrowDown  = canGrowDown && !shouldGrowRight;
-
-		if (shouldGrowRight)
-			return this.growRight(width, height);
-		else if (shouldGrowDown)
-			return this.growDown(width, height);
-		else if (canGrowRight)
+		if (canGrowRight)
 			return this.growRight(width, height);
 		else if (canGrowDown)
 			return this.growDown(width, height);
@@ -126,7 +117,7 @@ GrowingPacker.prototype = {
 			used: true,
 			x: 0,
 			y: 0,
-			width: this.root.width + width,
+			width: this.root.width,
 			height: this.root.height,
 			down: this.root,
 			right: { x: this.root.width, y: 0, width: width, height: this.root.height }
