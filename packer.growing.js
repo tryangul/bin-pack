@@ -57,7 +57,9 @@ Example:
 
 ******************************************************************************/
 
-var GrowingPacker = function() { };
+var GrowingPacker = function(options) {
+	this.maxWidth = options.maxWidth || null;
+};
 
 GrowingPacker.prototype = {
 
@@ -101,8 +103,11 @@ GrowingPacker.prototype = {
 		var canGrowDown  = (width  <= this.root.width);
 		var canGrowRight = (height <= this.root.height);
 
-		var shouldGrowRight = canGrowRight && (this.root.height >= (this.root.width  + width )); // attempt to keep square-ish by growing right when height is much greater than width
-		var shouldGrowDown  = canGrowDown  && (this.root.width  >= (this.root.height + height)); // attempt to keep square-ish by growing down  when width  is much greater than height
+		var shouldGrowRight = canGrowRight && this.maxWidth
+			? this.root.width < this.maxWidth
+			: (this.root.height >= (this.root.width + width )); // attempt to keep square-ish by growing right when height is much greater than width
+
+		var shouldGrowDown  = canGrowDown && !shouldGrowRight;
 
 		if (shouldGrowRight)
 			return this.growRight(width, height);
